@@ -1,20 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-/*
-Public Methods:
-- PlayMusic()
-- StopMusic()
-- ResumeMusic()
-- TransitionMusic()
-- PlaySFX()
-- PlaySFXAtPoint()
-- CreateMusicSource()
-- GetRandomSFX()
-- ChangeMasterVolume()
-- ToggleSFX()
-- ToggleMusic()
-*/
 public class AudioManager : Singleton<AudioManager>
 {       
     private AudioSource _musicSourceA;
@@ -43,7 +29,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlayMusic(AssetManager.MusicEnum musicEnum, float volume = 1.0f) 
+    public void PlayMusic(MusicEnum musicEnum, float volume = 1.0f) 
     {   
         // _musicSourceA is treated as the primary Audio Source
         _musicSourceB.clip = null;
@@ -71,7 +57,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void TransitionMusic(AssetManager.MusicEnum musicEnum, float volume = 1.0f)
+    public void TransitionMusic(MusicEnum musicEnum, float volume = 1.0f)
     {   
         if (_fadeInCoroutine != null)
         {
@@ -98,7 +84,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private IEnumerator FadeIn(AudioSource musicSource, AssetManager.MusicEnum musicEnum, float volume)
+    private IEnumerator FadeIn(AudioSource musicSource, MusicEnum musicEnum, float volume)
     {   
         musicSource.volume = 0;
         musicSource.clip = AssetManager.Instance.GetMusicAudioClip(musicEnum);
@@ -128,9 +114,9 @@ public class AudioManager : Singleton<AudioManager>
         musicSource.clip = null;
     }
 
-    public void PlaySFX(AssetManager.SFXEnum sfxEnum, float volume = 1.0f) => _sfxSource.PlayOneShot(AssetManager.Instance.GetSFXAudioClip(sfxEnum), volume);
+    public void PlaySFX(SFXEnum sfxEnum, float volume = 1.0f) => _sfxSource.PlayOneShot(AssetManager.Instance.GetSFXAudioClip(sfxEnum), volume);
 
-    public void PlaySFXAtPoint(AssetManager.SFXEnum sfxEnum, Vector3 position, float volume = 1.0f, float minDistance = 1.0f, float maxDistance = 500.0f)
+    public void PlaySFXAtPoint(SFXEnum sfxEnum, Vector3 position, float volume = 1.0f, float minDistance = 1.0f, float maxDistance = 500.0f)
     {
         GameObject tempObject = CreateSpatialAudioObject(position, volume, minDistance, maxDistance);
         AudioSource audioSource = tempObject.GetComponent<AudioSource>();
@@ -139,7 +125,7 @@ public class AudioManager : Singleton<AudioManager>
         Destroy(tempObject, audioSource.clip.length);
     }
 
-    public GameObject CreateMusicSource(AssetManager.MusicEnum musicEnum, Vector3 position, float volume = 1.0f, float minDistance = 1.0f, float maxDistance = 500.0f)
+    public GameObject CreateMusicSource(MusicEnum musicEnum, Vector3 position, float volume = 1.0f, float minDistance = 1.0f, float maxDistance = 500.0f)
     {
         GameObject audioSourceObject = CreateSpatialAudioObject(position, volume, minDistance, maxDistance);
         AudioSource audioSource = audioSourceObject.GetComponent<AudioSource>();
@@ -161,7 +147,7 @@ public class AudioManager : Singleton<AudioManager>
         return audioSourceObject;
     }
 
-    public AssetManager.SFXEnum GetRandomSFX(params AssetManager.SFXEnum[] sfxEnums) => sfxEnums[Random.Range(0, sfxEnums.Length)];
+    public SFXEnum GetRandomSFX(params SFXEnum[] sfxEnums) => sfxEnums[Random.Range(0, sfxEnums.Length)];
 
     public void ChangeMasterVolume(float value) => AudioListener.volume = value;
     public void ToggleSFX() => _sfxSource.mute = !_sfxSource.mute;

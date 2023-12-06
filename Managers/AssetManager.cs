@@ -1,18 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-/*
-*Remember to attach this script to a prefab named AssetManager within the Resources folder*
 
-Public Methods:
-- GetMusicAudioClip()
-- GetSFXAudioClip()
-- GetUITexture()
-- GetPrefab()
-*/
-public class AssetManager : Singleton<AssetManager>
-{    
-    public enum MusicEnum
+// Remember to attach this script to a prefab named AssetManager within the Resources folder
+public enum MusicEnum
     {
 
     }
@@ -29,6 +20,8 @@ public class AssetManager : Singleton<AssetManager>
 
     }
 
+public class AssetManager : Singleton<AssetManager>
+{    
     private Dictionary<MusicEnum, AudioClip> _musicDictionary = new Dictionary<MusicEnum, AudioClip>();
     private Dictionary<SFXEnum, AudioClip> _sfxDictionary = new Dictionary<SFXEnum, AudioClip>();
     private Dictionary<UITextureEnum, Texture> _uiTextureDictionary = new Dictionary<UITextureEnum, Texture>();
