@@ -1,5 +1,5 @@
 # unity-managers
-A group of scripts useful for managing common systems within games.
+A group of scripts useful for managing common systems within Unity projects.
 
 ## Singleton
 *A generic implementation of a useful design pattern that allows for global access and ensurance of only one instance of itself existing.*
