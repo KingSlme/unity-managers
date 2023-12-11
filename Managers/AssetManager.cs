@@ -25,7 +25,7 @@ public class AssetManager : Singleton<AssetManager>
     private Dictionary<MusicEnum, AudioClip> _musicDictionary = new Dictionary<MusicEnum, AudioClip>();
     private Dictionary<SFXEnum, AudioClip> _sfxDictionary = new Dictionary<SFXEnum, AudioClip>();
     private Dictionary<UITextureEnum, Texture> _uiTextureDictionary = new Dictionary<UITextureEnum, Texture>();
-    private Dictionary<PrefabEnum, GameObject> _prefabDictionary = new Dictionary<PrefabEnum, GameObject>();
+    private Dictionary<PrefabEnum, Transform> _prefabDictionary = new Dictionary<PrefabEnum, Transform>();
 
     private static AssetManager _instance;
 
@@ -74,7 +74,7 @@ public class AssetManager : Singleton<AssetManager>
     [System.Serializable] public class Prefab
     {
         public PrefabEnum PrefabMember;
-        public GameObject PrefabAsset;
+        public Transform PrefabAsset;
     }
 
     protected override void Awake()
@@ -111,5 +111,5 @@ public class AssetManager : Singleton<AssetManager>
     public AudioClip GetMusicAudioClip(MusicEnum music) => GetAsset(_musicDictionary, music);  
     public AudioClip GetSFXAudioClip(SFXEnum sfx) => GetAsset(_sfxDictionary, sfx);
     public Texture GetUITexture(UITextureEnum texture) => GetAsset(_uiTextureDictionary, texture);
-    public GameObject GetPrefab(PrefabEnum prefab) => GetAsset(_prefabDictionary, prefab);
+    public Transform GetPrefab(PrefabEnum prefab) => GetAsset(_prefabDictionary, prefab);
 }
