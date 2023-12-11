@@ -98,7 +98,7 @@ public class AssetManager : Singleton<AssetManager>
         }
     }
 
-    private V GetAsset< U, V>(Dictionary<U, V> dictionary, U assetKey) where V : class
+    private V GetAsset<U, V>(Dictionary<U, V> dictionary, U assetKey) where V : class
     {
         if (dictionary.TryGetValue(assetKey, out V assetValue))
         {
