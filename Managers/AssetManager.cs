@@ -1,24 +1,24 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-
 // Remember to attach this script to a prefab named AssetManager within the Resources folder
+
 public enum MusicEnum
-    {
+{
 
-    }
-    public enum SFXEnum
-    {
+}
+public enum SFXEnum
+{
 
-    }
-    public enum UITextureEnum
-    {
+}
+public enum UITextureEnum
+{
 
-    }
-    public enum PrefabEnum
-    {
+}
+public enum PrefabEnum
+{
 
-    }
+}
 
 public class AssetManager : Singleton<AssetManager>
 {    
